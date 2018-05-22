@@ -19,6 +19,11 @@ resource "vsphere_compute_cluster" "compute_cluster" {
   ha_enabled = false
 }
 
+data "vsphere_compute_cluster" "compute_cluster" {
+  name          = "cluster"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
+
 output "resource_pool_id" {
-  value = "${vsphere_compute_cluster.compute_cluster.resource_pool_id}"
+  value = "${data.vsphere_compute_cluster.compute_cluster.resource_pool_id}"
 }
