@@ -1,0 +1,8 @@
+resource "vsphere_compute_cluster" "compute_cluster" {
+  name            = "cluster"
+  datacenter_id   = "${data.vsphere_datacenter.dc.id}"
+  host_system_ids = ["${data.vsphere_host.hosts.*.id}"]
+
+  drs_enabled          = false
+  ha_enabled = false
+}
